@@ -188,9 +188,9 @@
 				}
 			}
 		})
-		.evt('blur', function () {
-			box.style.display = 'none';
-		})
+		// .evt('blur', function () {
+		// 	box.style.display = 'none';
+		// })
 		.evt('dblclick', function () {
 			box.style.display = '';
 		});
