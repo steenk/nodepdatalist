@@ -115,10 +115,11 @@
 		 ,	box = t$('div.nodep-dl-list', {style:'width: '+w+'px; left: '+l+'px; display: none; top:'+t+'px'})
 		 ,	list = $('#'+iid + ' option');
 		for (var i=0; i<list.length; i++) {
-			var itm = t$('div.nodep-dl-item.nodep-dl-visible', null, list[i].value)
+			var label = list[i].getAttribute('label') || list[i].textContent.trim() || list[i].value;
+			var itm = t$('div.nodep-dl-item.nodep-dl-visible', null, label)
 				.evt('click', function (evt) {
 					evt.preventDefault();
-					inp.value = evt.target.textContent;
+					inp.value = evt.target.value;
 					box.style.display = 'none';
 				})
 				.evt('mouseover', function (evt) {
@@ -132,6 +133,7 @@
 					evt.target.classList.remove('nodep-dl-selected');
 				})
 			;
+			itm.value = list[i].value;
 			box.appendChild(itm);
 		}
 		inp.parentNode.insertBefore(box, inp.nextSibling);
@@ -183,7 +185,7 @@
 			} else if (evt.keyCode === 9 || evt.keyCode === 10 || evt.keyCode === 13) {
 				var sel = box.$('.nodep-dl-selected')[0];
 				if (sel) {
-					inp.value = sel.textContent;
+					inp.value = sel.value;
 					box.style.display = 'none';
 				}
 			}
