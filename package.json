@@ -1,6 +1,6 @@
 {
   "name": "nodepdatalist",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "No dependency input field datepicker polyfill.",
   "main": "nodepdatalist.js",
   "scripts": {

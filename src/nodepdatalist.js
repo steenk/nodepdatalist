@@ -1,6 +1,7 @@
 /*!
  * No Dependency Datalist
- * 2013 Steen Klingberg
+ * Version 0.1.2
+ * 2013 Steen Klingberg, Bhanu Priya
  * @license MIT
  */
 (function () {
@@ -82,14 +83,6 @@
 						for (var j=0; j<inp.length; j++) {
 							noDepDatalist(inp[j]);
 						}
-					} else
-					if (n[i] instanceof HTMLDataListElement) {
-						var obs = new MutationObserver(function (dlmut) {
-							dlmut.forEach(function (dlm) {
-								console.log(dlm.target + ' has muted');
-							})
-						})
-						obs.observe(n[i], {childList: true, attributes: true});
 					}
 				}
 
@@ -223,16 +216,21 @@
 				}
 
 			} else if (evt.keyCode === 9 || evt.keyCode === 10 || evt.keyCode === 13) {
-				var sel = box.$('.nodep-dl-selected')[0];
+				var sel = box.$('.nodep-dl-selected')[0];	
 				if (sel) {
 					inp.value = sel.value;
 					box.style.display = 'none';
 				}
 			}
 		})
-		// .evt('blur', function () {
-		// 	box.style.display = 'none';
-		// })
+		.evt('blur', function (evt) {
+			// console.log(evt.relatedTarget, document.                                                                                                                                                                                                                                                                                                        activeElement);
+			if(evt.relatedTarget === null) {
+				box.style.display = '';
+			} else {
+				box.style.display = 'none';
+			}
+		})
 		.evt('dblclick', function () {
 			box.style.display = '';
 		});
